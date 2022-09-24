@@ -8,15 +8,22 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
 
-    <title>Visualizador de Gráficos</title>
+    <title>Graph Viewer</title>
   </head>
   <body>
     <nav class="navbar navbar-dark bg-dark" id="navBar">
-        <a class="navbar-brand" href="#">
-            <i class="fa fa-line-chart" aria-hidden="true"></i>
-            Visualizador de Gráficos
+        <a class="navbar-brand" href="#" id="navbarTitle">
+            <i class="fa fa-line-chart" aria-hidden="true"></i> Visualizador de Gráficos
         </a>
+        <div class="form-group">
+            <label for="formControlSelect" id="languageSelect" style="color: white;">Selecionar Idioma</label>
+            <select class="form-control" id="formControlSelect">
+              <option>Português</option>
+              <option>English</option>
+            </select>
+        </div>
     </nav>
     <body style="height: 100%;">        
         <div class="row w-100">
@@ -25,17 +32,17 @@
                 <br><canvas id="myCanvas"></canvas>
             </div>
             <div class="col-4 col-md-3 text-center" id="form">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="buttonNewAxis" style="margin: 10px;">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#axisModal" id="buttonNewAxis" style="margin: 10px;">
                     Adicionar Eixo
                 </button>
             </div>
         </div>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="axisModal" tabindex="-1" role="dialog" aria-labelledby="axisModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Adicionar Eixo</h5>
+                        <h5 class="modal-title" id="axisModalLabel">Adicionar Eixo</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -43,9 +50,12 @@
                     <div class="modal-body">
                         <table>
                             <tr>
-                                <th><label for="#titleAxis">Nome</label></th>
+                                <th><label for="#titleAxis" id="titleAxisLabel">Nome</label></th>
                                 <th>&emsp;</th>
                                 <th><input type="text" id="titleAxis"></th>
+                                <th id="tooltipName" data-toggle="tootltip" title="Nome do eixo selecionado">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                </th>
                             </tr>
                             <!-- <tr>
                                 <th><label for="#titleAxis">Cor</label></th>
@@ -53,31 +63,51 @@
                                 <th><input type="text" id="colorAxis"></th>
                             </tr> -->
                             <tr>
-                                <th><label for="#valMin">Valor Min</label></th>
+                                <th><label for="#valMin" id="valMinLabel">Valor Min</label></th>
                                 <th>&emsp;</th>
                                 <th><input type="number" id="valMin"></th>
+                                <th id="tooltipValMin" data-toggle="tootltip" title="Valor minimo do eixo selecionado">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                </th>
                             </tr>
                             <tr>
-                                <th><label for="#valMinBtn">Posição Min</label></th>
+                                <th><label for="#valMinBtn" id="valMinBtnLabel">Posição Min</label></th>
                                 <th>&emsp;</th>
-                                <th><button type="btn" id="valMinBtn"><i class="fa fa-mouse-pointer" aria-hidden="true"></i></th>
-                                <th id="valMinVal"></th>
+                                <th>
+                                    <button type="btn" class="btn" id="valMinBtn" style="float: left;">
+                                        <i class="fa fa-mouse-pointer" aria-hidden="true"></i>
+                                    </button>
+                                    <p id="valMinVal"></p>
+                                </th>
+                                <th id="tooltipValMinBtn" data-toggle="tootltip" title="Posição do valor minimo do eixo selcionado.&#013;Aperta com o mouse no local desejado">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                </th>
                             </tr>
                             <tr>
-                                <th><label for="#valMax">Valor Max</label></th>
+                                <th><label for="#valMax" id="valMaxLabel">Valor Max</label></th>
                                 <th>&emsp;</th>
                                 <th><input type="number" id="valMax"></th>
+                                <th id="tooltipValMax" data-toggle="tootltip" title="Valor máximo do eixo selecionado">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                </th>
                             </tr>
                             <tr>
-                                <th><label for="#valMaxBtn">Posição Max</label></th>
+                                <th><label for="#valMaxBtn" id="valMaxBtnLabel">Posição Max</label></th>
                                 <th>&emsp;</th>
-                                <th><button type="btn" id="valMaxBtn"><i class="fa fa-mouse-pointer" aria-hidden="true"></i></th>
-                                <th id="valMaxVal"></th>
+                                <th>
+                                    <button type="btn" class="btn" id="valMaxBtn" style="float: left;">
+                                        <i class="fa fa-mouse-pointer" aria-hidden="true"></i>
+                                    </button>
+                                    <p id="valMaxVal"></p>
+                                </th>
+                                <th id="tooltipValMaxBtn" data-toggle="tootltip" title="Posição do valor máximo do eixo selcionado.&#013;Aperta com o mouse no local desejado">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                </th>
                             </tr>
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Fechar</button>
                         <button type="button" class="btn btn-primary" id="save">Salvar</button>
                     </div>
                 </div>
@@ -85,10 +115,8 @@
         </div>
 
         <script src="main.js"></script>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
 </html>
