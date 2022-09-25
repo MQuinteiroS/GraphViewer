@@ -20,3 +20,126 @@ body {
 .method-btn{
     
 }
+
+.axis{
+    background-color: #292F33;
+    border-radius: 8px;
+}
+.axis-left-continuous {
+    position: absolute;
+    height: 200px;
+    width: 10px;
+    margin-right: 110px;
+}
+.axis-right-continuous {
+    position: absolute;
+    height: 200px;
+    width: 10px;
+    margin-left: 110px;
+}
+
+.container {
+    width: 300px;
+    height: 300px;
+    /*   border: 5px solid lightgray; */
+    background: transparent;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1px;
+}
+
+.line-continuous{
+    background-color: #000;
+    width: 120px;
+    height: 5px;
+    -ms-transform: rotate(30deg);
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+
+.ball-left-continuous{
+    background-color: #7B0099;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-bottom: 60px;
+    margin-right: 110px;
+    position: absolute;
+    z-index: 999;
+}
+
+.ball-right-continuous{
+    position: absolute;
+    background-color: #0F7DC2;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-top: 60px;
+    z-index: 999;
+    margin-left: 110px;
+}
+
+.axis-left-intersection {
+    height: 200px;
+    width: 10px;
+    position: absolute;
+    margin-right: 110px;
+}
+.axis-right-intersection {
+    height: 10px;
+    width: 200px;
+    position: absolute;
+    margin-left: 50px;
+    margin-top: 150px;
+}
+
+
+.line-intersection-left{
+    position: absolute;
+    background-color: #000;
+    width: 80px;
+    height: 5px;
+    margin-right: 25px;
+}
+
+.line-intersection-bottom{
+    position: absolute;
+    background-color: #000;
+    width: 5px;
+    height: 80px;
+    margin-top: 75px;
+    margin-left: 50px;
+}
+
+.ball-left-intersection{
+    background-color: #7B0099;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 110px;
+    z-index: 999;
+    position: absolute;
+}
+
+.ball-right-intersection{
+    background-color: #0F7DC2;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-top: 150px;
+    margin-left: 50px;
+    z-index: 998;
+    position: absolute;
+}
+
+.ball-intersection{
+    background-color: #e06377;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    z-index: 998;
+    margin-left: 50px;
+    position: absolute;
+}
