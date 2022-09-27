@@ -7,7 +7,7 @@ var c = document.getElementById('myCanvas');
 var img = new Image();
 var ctx = c.getContext('2d');
 var lngSelct = 'English';
-let magicNumb = document.getElementById('inputFile').offsetHeight + document.getElementById('navBar').offsetHeight + 30;
+let magicNumb = document.getElementById('inputFile').offsetHeight + document.getElementById('navBar').offsetHeight + 27;
 
 var languageObj = {
     'Português':{
@@ -61,7 +61,7 @@ var languageObj = {
         'down': 'Down',
         'left': 'Left',
         'right': 'Right',
-        'tooltipdirection': 'To witch direction the axis should look for the other axis to intersect',
+        'tooltipdirection': 'To which direction the axis should look for the other axis to intersect',
         'tooltipName': 'Name of the axis',
         'tooltipValMin': 'Minimal value of the axis',
         'tooltipValMinBtn': 'Position of the minimal value.\nClick with the mouse on the desired position',
@@ -107,6 +107,7 @@ document.getElementById('valMaxBtn').addEventListener('click', async function(){
 	document.addEventListener('click', function(event){
         currentPosMax = [event.clientX, event.clientY - magicNumb];
 		$('#axisModal').modal('show');
+        createAxis(currentPosMax[0], currentPosMax[1], 'blue', 3);
 		document.getElementById('valMaxVal').textContent = JSON.stringify(currentPosMax);
 		this.removeEventListener('click', arguments.callee);
 	});
